@@ -25,6 +25,10 @@ import { marketplaceAdvancedRouter } from "./routers/marketplace-advanced";
 import { uploadsRouter } from "./routers/uploads";
 import { seedRouter } from "./routers/seed";
 
+import { freeTierRouter } from "./routers/free-tier";
+import { notificationsRouter } from "./routers/notifications";
+import { codeQualityRouter } from "./routers/code-quality";
+
 export const appRouter = router({
   system: systemRouter,
   auth: router({
@@ -69,6 +73,9 @@ export const appRouter = router({
   integrations: integrationsRouter,
   marketplaceAdv: marketplaceAdvancedRouter,
   uploads: uploadsRouter,
+  freeTier: freeTierRouter,
+  notifications: notificationsRouter,
+  codeQuality: codeQualityRouter,
   seed: seedRouter,
 });
 
