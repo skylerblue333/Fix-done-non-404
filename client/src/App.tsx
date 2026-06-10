@@ -24,6 +24,7 @@ import AdminPanel from './pages/AdminPanel';
 import DeveloperArea from './pages/DeveloperArea';
 import CodeQualityDashboard from './pages/CodeQualityDashboard';
 import SignUp from './pages/SignUp';
+import ComponentShowcase from './pages/ComponentShowcase';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -59,6 +60,9 @@ export default function App() {
       <Route path="/developer" component={DeveloperArea} />
       <Route path="/code-quality" component={CodeQualityDashboard} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/components" component={ComponentShowcase} />
+      <Route path="/profile" component={Dashboard} />
+      <Route path="/videos" component={VideoArea} />
       <Route path="/:rest*" component={NotFound} />
       </Switch>
     </Router>

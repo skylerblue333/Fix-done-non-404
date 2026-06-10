@@ -7,6 +7,7 @@ export function Navigation() {
 
   const links = [
     { href: '/', label: 'Home' },
+    { href: '/dashboard', label: 'Dashboard' },
     { href: '/marketplace', label: 'Marketplace' },
     { href: '/trading', label: 'Trading' },
     { href: '/gaming', label: 'Gaming' },
@@ -16,25 +17,27 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 sticky top-0 z-40">
+    <nav className="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-4 sticky top-0 z-40 border-b border-slate-700/60">
       <div className="container flex justify-between items-center">
-        <Link href="/" className="font-bold text-2xl">
+        <Link href="/" className="font-bold text-2xl" onClick={() => setIsOpen(false)}>
           🚀 SKYCOIN4444
         </Link>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden"
+          aria-label="Toggle navigation menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <div className={`${isOpen ? 'block' : 'hidden'} md:flex gap-6`}>
+        <div className={`${isOpen ? 'flex flex-col absolute top-full left-0 right-0 bg-slate-900 p-4 gap-4 border-b border-slate-700 md:static md:p-0' : 'hidden'} md:flex md:flex-row gap-6`}>
           {links.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className="hover:text-blue-400 transition-colors"
+              onClick={() => setIsOpen(false)}
+              className="hover:text-cyan-400 transition-colors"
             >
               {link.label}
             </Link>
