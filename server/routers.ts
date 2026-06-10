@@ -10,6 +10,8 @@ import { governanceRouter } from "./routers/governance";
 import { charityRouter } from "./routers/charity";
 import { marketplaceAdvancedRouter as nftMarketplaceRouter } from "./routers/marketplace-advanced";
 import { phase21RealtimeRouter } from "./routers/phase21-realtime";
+import { phase22AiMlRouter } from "./routers/phase22-ai-ml";
+import { phase23AdminDashboardRouter } from "./routers/phase23-admin-dashboard";
 import { analyticsRouter } from "./routers/analytics";
 import { tradingRouter } from "./routers/trading";
 import { escrowRouter } from "./routers/escrow";
@@ -99,6 +101,8 @@ export const appRouter = router({
   aiCodeEngineer: aiCodeEngineerRouter,
   seed: seedRouter,
   phase21: phase21RealtimeRouter,
+  phase22: phase22AiMlRouter,
+  phase23: phase23AdminDashboardRouter,
 });
 
 export type AppRouter = typeof appRouter;
