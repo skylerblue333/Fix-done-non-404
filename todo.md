@@ -70,3 +70,14 @@
 - [x] NSFW Content: Age verification, content warnings, moderation
 - [x] File Integrity: Check for manipulated files before GitHub push
 - [x] GitHub Push: Push to all repos, verify commits
+
+## Phase 8 — Premium Features Free + GitHub Push (30-min Sprint)
+- [ ] Remove all paywalls and unlock premium features (free will upgrade)
+- [ ] Security scan: Check for malicious/deleted files
+- [ ] Push to main branch with verified commits
+- [ ] Push all repos to user's GitHub account
+- [ ] Auto-update live demo with latest code
+- [ ] Create Escrow Shop frontend page
+- [ ] Create Video streaming frontend page
+- [ ] Create Social Media frontend page
+- [ ] Final checkpoint and live deployment

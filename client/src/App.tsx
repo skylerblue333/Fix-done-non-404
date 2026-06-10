@@ -18,6 +18,7 @@ import Analytics from "./pages/Analytics";
 import Charity from "./pages/Charity";
 import Marketplace from "./pages/Marketplace";
 import DayTradeRoom from "./pages/DayTradeRoom";
+import { VoiceNavBar } from "./components/VoiceNavBar";
 
 // Fires the owner "new user signup" alert once after auth lands.
 function OnboardTrigger() {
@@ -66,6 +67,7 @@ function App() {
           <OnboardTrigger />
           <Layout>
             <Router />
+            <VoiceNavBar />
           </Layout>
         </TooltipProvider>
       </ThemeProvider>

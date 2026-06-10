@@ -56,14 +56,17 @@ async function doSeed() {
     await insertCampaign({ title: "Coding Scholarships", description: "Fund scholarships for aspiring developers worldwide.", goalAmount: 40000 });
   }
 
-  // Marketplace products
+  // Marketplace products (all FREE - free will upgrade)
   if ((await listProducts()).length === 0) {
-    await insertProduct({ title: "SKYCOIN4444 Pro Membership", description: "Unlock premium AI tools and priority support.", category: "Membership", priceSky: 1200 });
-    await insertProduct({ title: "HopeAI Credits Pack", description: "10,000 AI engineering credits.", category: "AI", priceSky: 500 });
-    await insertProduct({ title: "Cyberpunk Avatar NFT", description: "Limited edition animated avatar.", category: "Collectible", priceSky: 250 });
-    await insertProduct({ title: "Sky School All-Access", description: "Lifetime access to every course.", category: "Education", priceSky: 800 });
-    await insertProduct({ title: "Governance Booster", description: "2x staking power for one season.", category: "Governance", priceSky: 1500 });
-    await insertProduct({ title: "Arcade Token Bundle", description: "5,000 arcade play tokens.", category: "Gaming", priceSky: 150 });
+    await insertProduct({ title: "SKYCOIN4444 Pro Membership", description: "Premium AI tools and priority support - FREE!", category: "Membership", priceSky: 0 });
+    await insertProduct({ title: "HopeAI Credits Pack", description: "10,000 AI engineering credits - FREE!", category: "AI", priceSky: 0 });
+    await insertProduct({ title: "Cyberpunk Avatar NFT", description: "Limited edition animated avatar - FREE!", category: "Collectible", priceSky: 0 });
+    await insertProduct({ title: "Sky School All-Access", description: "Lifetime access to every course - FREE!", category: "Education", priceSky: 0 });
+    await insertProduct({ title: "Governance Booster", description: "2x staking power for one season - FREE!", category: "Governance", priceSky: 0 });
+    await insertProduct({ title: "Arcade Token Bundle", description: "5,000 arcade play tokens - FREE!", category: "Gaming", priceSky: 0 });
+    await insertProduct({ title: "Trading Pro Suite", description: "Advanced trading signals and AI analysis - FREE!", category: "Trading", priceSky: 0 });
+    await insertProduct({ title: "Social Premium", description: "Unlimited posts, followers, and messaging - FREE!", category: "Social", priceSky: 0 });
+    await insertProduct({ title: "Video Creator Pack", description: "4K uploads, live streaming, monetization - FREE!", category: "Video", priceSky: 0 });
   }
   return { seeded: true };
 }
