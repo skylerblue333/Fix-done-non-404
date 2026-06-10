@@ -19,6 +19,8 @@ import { beginnerRouter } from "./routers/beginner";
 import { hopeaiAdvancedRouter } from "./routers/hopeai-advanced";
 import { featuresExpansionRouter } from "./routers/features-expansion";
 import { megaFeaturesRouter } from "./routers/mega-features";
+import { rulesEngineRouter } from "./routers/rules-engine";
+import { integrationsRouter } from "./routers/integrations";
 import { uploadsRouter } from "./routers/uploads";
 import { seedRouter } from "./routers/seed";
 
@@ -62,6 +64,8 @@ export const appRouter = router({
   hopeaiAdvanced: hopeaiAdvancedRouter,
   features: featuresExpansionRouter,
   mega: megaFeaturesRouter,
+  rules: rulesEngineRouter,
+  integrations: integrationsRouter,
   uploads: uploadsRouter,
   seed: seedRouter,
 });
