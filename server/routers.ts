@@ -17,6 +17,7 @@ import { socialRouter } from "./routers/social";
 import { agentsRouter } from "./routers/agents";
 import { beginnerRouter } from "./routers/beginner";
 import { hopeaiAdvancedRouter } from "./routers/hopeai-advanced";
+import { featuresExpansionRouter } from "./routers/features-expansion";
 import { uploadsRouter } from "./routers/uploads";
 import { seedRouter } from "./routers/seed";
 
@@ -58,6 +59,7 @@ export const appRouter = router({
   agents: agentsRouter,
   beginner: beginnerRouter,
   hopeaiAdvanced: hopeaiAdvancedRouter,
+  features: featuresExpansionRouter,
   uploads: uploadsRouter,
   seed: seedRouter,
 });
