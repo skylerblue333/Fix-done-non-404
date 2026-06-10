@@ -199,17 +199,17 @@ export default function Crypto() {
       </div>
 
       <Tabs defaultValue="portfolio" className="w-full">
-        <TabsList className="grid grid-cols-5 mb-6">
-          <TabsTrigger value="portfolio"><Coins className="w-4 h-4 mr-1" /> Portfolio</TabsTrigger>
-          <TabsTrigger value="mine"><Pickaxe className="w-4 h-4 mr-1" /> Mine</TabsTrigger>
-          <TabsTrigger value="stake"><Lock className="w-4 h-4 mr-1" /> Stake</TabsTrigger>
-          <TabsTrigger value="burn"><Flame className="w-4 h-4 mr-1" /> Burn</TabsTrigger>
-          <TabsTrigger value="swap"><ArrowLeftRight className="w-4 h-4 mr-1" /> Swap</TabsTrigger>
+        <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-6 w-full overflow-x-auto">
+          <TabsTrigger value="portfolio" className="text-xs md:text-sm"><Coins className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Portfolio</span></TabsTrigger>
+          <TabsTrigger value="mine" className="text-xs md:text-sm"><Pickaxe className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Mine</span></TabsTrigger>
+          <TabsTrigger value="stake" className="text-xs md:text-sm"><Lock className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Stake</span></TabsTrigger>
+          <TabsTrigger value="burn" className="text-xs md:text-sm"><Flame className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Burn</span></TabsTrigger>
+          <TabsTrigger value="swap" className="text-xs md:text-sm"><ArrowLeftRight className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Swap</span></TabsTrigger>
         </TabsList>
 
         {/* PORTFOLIO */}
-        <TabsContent value="portfolio">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <TabsContent value="portfolio" className="w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
             {TOKENS.map((token) => {
               const w = portfolio.data?.wallets?.find((x: any) => x.token === token);
               const meta = TOKEN_META[token];

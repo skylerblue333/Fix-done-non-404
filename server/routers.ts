@@ -30,6 +30,7 @@ import { notificationsRouter } from "./routers/notifications";
 import { codeQualityRouter } from "./routers/code-quality";
 import { advancedSearchRouter } from "./routers/advanced-search";
 import { cryptoRouter } from "./routers/crypto";
+import { leaderboardsRouter } from "./routers/leaderboards";
 
 export const appRouter = router({
   system: systemRouter,
@@ -80,6 +81,7 @@ export const appRouter = router({
   codeQuality: codeQualityRouter,
   search: advancedSearchRouter,
   crypto: cryptoRouter,
+  leaderboards: leaderboardsRouter,
   seed: seedRouter,
 });
 

@@ -119,3 +119,12 @@
 - [x] Add /crypto route to App.tsx
 - [x] TypeScript clean, all features wired
 - [x] Save checkpoint + push to GitHub + live domain
+
+## Phase 12 — Voice Commands + Leaderboards + Mobile Optimization
+- [x] Voice commands: mine, stake, burn, swap, leaderboards (useVoiceNav.ts)
+- [x] Leaderboards router: top miners, stakers, burners, wealthy, user ranks, weekly rewards
+- [x] Leaderboards UI page: 4 tabs with rankings, medals, user stats
+- [x] Mobile optimization: responsive tabs, grid layouts, text hiding on mobile
+- [x] Wire leaderboards to appRouter + nav entry + voice commands
+- [x] TypeScript clean, all features tested
+- [x] READY FOR FINAL CHECKPOINT + GITHUB PUSH + LIVE DEPLOYMENT + ZIP

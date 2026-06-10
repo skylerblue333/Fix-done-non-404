@@ -72,9 +72,63 @@ export function useVoiceNav() {
       description: 'Open Analytics',
     },
     {
+      pattern: /crypto|wallet|mine|stake|burn|swap|bitcoin|coin/i,
+      action: () => navigate('/crypto'),
+      description: 'Open Crypto Hub',
+    },
+    {
+      pattern: /mine|mining|miner|dig/i,
+      action: () => {
+        navigate('/crypto');
+        setTimeout(() => {
+          const mineTab = document.querySelector('[value="mine"]');
+          if (mineTab) (mineTab as HTMLElement).click();
+        }, 300);
+      },
+      description: 'Start Mining',
+    },
+    {
+      pattern: /stake|staking|lock|yield/i,
+      action: () => {
+        navigate('/crypto');
+        setTimeout(() => {
+          const stakeTab = document.querySelector('[value="stake"]');
+          if (stakeTab) (stakeTab as HTMLElement).click();
+        }, 300);
+      },
+      description: 'Staking',
+    },
+    {
+      pattern: /burn|burn.*token|reduce.*supply/i,
+      action: () => {
+        navigate('/crypto');
+        setTimeout(() => {
+          const burnTab = document.querySelector('[value="burn"]');
+          if (burnTab) (burnTab as HTMLElement).click();
+        }, 300);
+      },
+      description: 'Burn Tokens',
+    },
+    {
+      pattern: /swap|exchange|trade.*crypto|dex/i,
+      action: () => {
+        navigate('/crypto');
+        setTimeout(() => {
+          const swapTab = document.querySelector('[value="swap"]');
+          if (swapTab) (swapTab as HTMLElement).click();
+        }, 300);
+      },
+      description: 'Swap Tokens',
+    },
+    {
       pattern: /back|return|previous/i,
       action: () => window.history.back(),
       description: 'Go Back',
+    },
+    {
+      pattern: /leaderboard|ranking|top|rank|compete/i,
+      action: () => navigate('/leaderboards'),
+      description: 'View Leaderboards',
     },
     {
       pattern: /logout|exit|quit/i,
