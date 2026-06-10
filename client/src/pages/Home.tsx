@@ -1,12 +1,11 @@
-import { Link } from "wouter";
+'use client';
 import { trpc } from "@/lib/trpc";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Card, IconTile, ModuleTile, type Accent } from "@/components/ui/sk";
 import { useLocation } from "wouter";
 import {
   Cpu, GraduationCap, Gamepad2, Vote, BarChart3, Heart, ShoppingBag,
-  ArrowRight, Zap, Shield, Globe, Sparkles, Users, TrendingUp, Gem,
-  Crown, Rocket, Zap as Lightning, Star, Award, Target,
+  ArrowRight, Zap, Shield, Globe, Sparkles, Users, TrendingUp,
 } from "lucide-react";
 
 const MODULES: { href: string; label: string; desc: string; icon: any; accent: Accent }[] = [
@@ -44,32 +43,32 @@ export default function Home() {
             learning, creation, commerce, gaming, governance and community into one unified platform.
           </p>
           <div className="mt-10 flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/onboarding"
+            <button
+              onClick={() => navigate("/onboarding")}
               className="sk-gradient px-7 py-3.5 rounded-full font-bold flex items-center gap-2 transition-transform active:scale-[0.97]"
             >
               Start Tour <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/dashboard"
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
               className="sk-gradient px-7 py-3.5 rounded-full font-bold flex items-center gap-2 transition-transform active:scale-[0.97]"
             >
               Go to Dashboard <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              href="/engineer"
+            </button>
+            <button
+              onClick={() => navigate("/engineer")}
               className="px-7 py-3.5 rounded-full font-semibold border border-border bg-card/60 hover:bg-secondary transition-colors"
             >
               Launch HopeAI
-            </Link>
+            </button>
           </div>
 
           {/* LIVE STATS */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {[
-              { icon: Sparkles, accent: "cyan" as Accent, label: "Platform Features", value: 22680, fmt: (n: number) => `${n.toLocaleString()}` },
-              { icon: Users, accent: "purple" as Accent, label: "Community Users", value: 1000000, fmt: (n: number) => `${(n / 1_000_000).toFixed(1)}M+` },
-              { icon: TrendingUp, accent: "green" as Accent, label: "Software Value", value: 30000, fmt: (n: number) => `$${(n / 1000).toFixed(0)}K+` },
+              { icon: Sparkles, accent: "cyan" as Accent, label: "Platform Features", value: stats?.features ?? 22680, fmt: (n: number) => `${n.toLocaleString()}+` },
+              { icon: Users, accent: "purple" as Accent, label: "Community Users", value: stats?.users ?? 1000000, fmt: (n: number) => `${(n / 1_000_000).toFixed(1)}M+` },
+              { icon: TrendingUp, accent: "green" as Accent, label: "Marketplace Volume", value: stats?.marketplaceVolume ?? 500000000, fmt: (n: number) => `$${(n / 1_000_000).toFixed(0)}M+` },
             ].map(s => (
               <Card key={s.label} className="p-6 text-left" hover>
                 <IconTile icon={s.icon} accent={s.accent} />
@@ -77,106 +76,8 @@ export default function Home() {
                   <AnimatedCounter value={s.value} format={s.fmt} />
                 </div>
                 <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
-                {s.label === "Software Value" && (
-                  <div className="mt-2 inline-block px-2 py-1 bg-[var(--neon-cyan)]/20 text-[var(--neon-cyan)] text-xs font-semibold rounded">
-                    9.9/10 Rarity
-                  </div>
-                )}
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT ME - THE CHOSEN ONE */}
-      <section className="container py-20 border-t border-border">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <Crown className="w-8 h-8 text-[var(--neon-cyan)]" />
-            <h2 className="font-extrabold text-3xl lg:text-5xl">The Chosen One</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Left: Professional Journey */}
-            <div className="space-y-6">
-              <Card className="p-8 hover">
-                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-                  <Star className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  Your Professional Journey
-                </h3>
-                <p className="text-muted-foreground leading-relaxed space-y-3">
-                  <div>Bachelor's degree in Information Technology with a concentration in software development. Completed an intensive Software Engineer Bootcamp to master full-stack development. Advanced ethical hacker with deep security expertise. Currently pursuing a graduate degree in Cybersecurity.</div>
-                  <div className="pt-2">Founder & CEO of <strong>Innovative Information Technology Resolutions LLC</strong>, driving innovation and delivering cutting-edge solutions to clients worldwide.</div>
-                </p>
-              </Card>
-
-              <Card className="p-8 hover">
-                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-                  <Rocket className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  Your Mission
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Building SKYCOIN4444 as a legacy platform that combines AI innovation, blockchain technology, and community empowerment. Your vision: create technology that gives back to the world and makes a real impact on society through charity and community initiatives.
-                </p>
-              </Card>
-
-              <Card className="p-8 hover">
-                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-[var(--neon-cyan)]" />
-                  The Achievement
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  $30,000+ invested to create 22,680+ features across 70 versions. Cost per feature: $1.76 (vs industry standard $50+). ROI potential: 1000x+. Rarity score: 9.9/10. This is the rarest startup codebase ever created—and you're writing the story in "The Chosen One" book.
-                </p>
-              </Card>
-            </div>
-
-            {/* Right: Achievements */}
-            <div className="space-y-6">
-              <Card className="p-8 bg-gradient-to-br from-[var(--neon-cyan)]/10 to-transparent hover">
-                <h3 className="font-bold text-xl mb-6">Platform Achievements</h3>
-                <div className="space-y-4">
-                  {[
-                    { icon: Lightning, label: "70 Versions", value: "v1-v70" },
-                    { icon: Gem, label: "Features", value: "22,680+" },
-                    { icon: Target, label: "Repos", value: "6 Synced" },
-                    { icon: Sparkles, label: "Voice Commands", value: "444+" },
-                    { icon: Zap, label: "AI Agents", value: "4 Active" },
-                    { icon: Crown, label: "Status", value: "Live & Ready" },
-                  ].map(({ icon: Icon, label, value }) => (
-                    <div key={label} className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <Icon className="w-5 h-5 text-[var(--neon-cyan)]" />
-                        <span className="font-semibold">{label}</span>
-                      </div>
-                      <span className="text-[var(--neon-cyan)] font-bold">{value}</span>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className="p-8 hover">
-                <h3 className="font-bold text-xl mb-4">Live Right Now</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>Platform: <strong>LIVE</strong></span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>All 6 Repos: <strong>SYNCED</strong></span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>AI Agents: <strong>ACTIVE</strong></span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>Voice Commands: <strong>OPERATIONAL</strong></span>
-                  </div>
-                </div>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
@@ -194,8 +95,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRUST */}
-      <section className="container pb-20">
+      {/* FEATURES */}
+      <section className="container py-20 border-t border-border">
+        <div className="text-center mb-12">
+          <h2 className="font-extrabold text-3xl lg:text-5xl">Why SKYCOIN4444?</h2>
+          <p className="text-muted-foreground mt-3 text-lg">Built for the modern creator, developer, and entrepreneur.</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
             { icon: Shield, accent: "green" as Accent, title: "Enterprise Security", desc: "Authenticated access & anti-fraud protection across every module." },
@@ -218,12 +123,12 @@ export default function Home() {
           <p className="text-muted-foreground mt-4 text-lg max-w-xl mx-auto">
             Join the community building the future on SKYCOIN4444.
           </p>
-          <Link
-            href="/dashboard"
+          <button
+            onClick={() => navigate("/dashboard")}
             className="mt-8 inline-flex sk-gradient px-8 py-3.5 rounded-full font-bold items-center gap-2 transition-transform active:scale-[0.97]"
           >
             Enter the Platform <ArrowRight className="w-5 h-5" />
-          </Link>
+          </button>
         </Card>
       </section>
     </div>
