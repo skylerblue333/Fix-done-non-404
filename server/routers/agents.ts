@@ -2,6 +2,14 @@ import { router, publicProcedure, protectedProcedure } from "../_core/trpc";
 import { z } from "zod";
 import { invokeLLM } from "../_core/llm";
 
+// AI Agent Account System (Stounula)
+const STOUNULA_AGENTS = {
+  codeEngineer: { id: "agent-code-001", name: "Code Engineer", role: "developer", email: "code@stounula.ai" },
+  dataAnalyst: { id: "agent-data-001", name: "Data Analyst", role: "analyst", email: "data@stounula.ai" },
+  businessAdvisor: { id: "agent-biz-001", name: "Business Advisor", role: "advisor", email: "business@stounula.ai" },
+  securityExpert: { id: "agent-sec-001", name: "Security Expert", role: "security", email: "security@stounula.ai" },
+};
+
 export const agentsRouter = router({
   // Content moderation (check for NSFW/harmful content)
   moderateContent: publicProcedure
@@ -174,5 +182,86 @@ export const agentsRouter = router({
       } catch {
         return { isFraud: false, riskScore: 0.05, reason: "Transaction appears legitimate" };
       }
+    }),
+
+  // AI Agent Account Management (Stounula)
+  createAgentAccount: protectedProcedure
+    .input(z.object({ agentType: z.enum(["codeEngineer", "dataAnalyst", "businessAdvisor", "securityExpert"]) }))
+    .mutation(async ({ input }) => {
+      const agent = STOUNULA_AGENTS[input.agentType as keyof typeof STOUNULA_AGENTS];
+      if (!agent) throw new Error("Invalid agent type");
+
+      return {
+        success: true,
+        agent: agent,
+        stounulaId: agent.id,
+        status: "account_created",
+        timestamp: new Date(),
+      };
+    }),
+
+  // Get AI Agent Account (Stounula)
+  getAgentAccount: publicProcedure
+    .input(z.object({ agentType: z.enum(["codeEngineer", "dataAnalyst", "businessAdvisor", "securityExpert"]) }))
+    .query(async ({ input }) => {
+      const agent = STOUNULA_AGENTS[input.agentType as keyof typeof STOUNULA_AGENTS];
+      if (!agent) throw new Error("Invalid agent type");
+
+      return {
+        agent: agent,
+        stounulaId: agent.id,
+        email: agent.email,
+        status: "active",
+        system: "Stounula",
+      };
+    }),
+
+  // AI Agent Execute Task (Stounula)
+  executeAgentTask: protectedProcedure
+    .input(z.object({
+      agentType: z.enum(["codeEngineer", "dataAnalyst", "businessAdvisor", "securityExpert"]),
+      task: z.string(),
+      context: z.string().optional(),
+    }))
+    .mutation(async ({ input }) => {
+      const agent = STOUNULA_AGENTS[input.agentType as keyof typeof STOUNULA_AGENTS];
+      if (!agent) throw new Error("Invalid agent type");
+
+      const response = await invokeLLM({
+        messages: [
+          {
+            role: "system",
+            content: `You are ${agent.name} (${agent.role}). You are an AI agent account in the Stounula system. Execute the following task professionally and provide detailed results.`,
+          } as any,
+          {
+            role: "user",
+            content: `Task: ${input.task}${input.context ? `\nContext: ${input.context}` : ""}`,
+          } as any,
+        ],
+      });
+
+      const contentMsg = response.choices[0]?.message.content;
+      const result = typeof contentMsg === "string" ? contentMsg : "Task execution failed";
+
+      return {
+        success: true,
+        agent: agent,
+        task: input.task,
+        result: result,
+        executedBy: agent.id,
+        system: "Stounula",
+        timestamp: new Date(),
+      };
+    }),
+
+  // List All AI Agent Accounts (Stounula)
+  listAgentAccounts: publicProcedure
+    .query(async () => {
+      return {
+        agents: Object.values(STOUNULA_AGENTS),
+        total: Object.keys(STOUNULA_AGENTS).length,
+        system: "Stounula",
+        status: "all_active",
+      };
     }),
 });
